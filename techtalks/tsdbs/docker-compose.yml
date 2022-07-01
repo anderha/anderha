@@ -1,0 +1,37 @@
+version: "3.1"
+
+services:
+  influxdb:
+    image: influxdb:latest
+    ports:
+      - "5432:8086"
+    volumes:
+      - ./docker_compose_data/influxdb/data:/var/lib/influxdb
+    environment:
+      INFLUXDB_DB: test
+      INFLUXDB_ADMIN_USER: test
+      INFLUXDB_ADMIN_PASSWORD: test
+  timescale:
+    container_name: timescalePG
+    image: timescale/timescaledb:latest-pg12
+    environment:
+      POSTGRES_PASSWORD: test
+      POSTGRES_DB: test
+      POSTGRES_USER: test
+    ports:
+      - 5433:5432
+    volumes:
+      - ./docker_compose_data/timescale/data:/var/lib/postgresql/data
+  grafana:
+    container_name: grafana
+    image: grafana/grafana-oss
+    environment:
+      - "GF_INSTALL_PLUGINS=marcusolsson-json-datasource"
+    ports:
+      - 3001:3000
+    volumes:
+      - ./docker_compose_data/grafana/data:/var/lib/grafana
+      - ./docker_compose_data/grafana/config.ini:/etc/grafana/config.ini
+    links:
+      - influxdb
+      - timescale

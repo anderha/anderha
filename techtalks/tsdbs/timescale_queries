@@ -1,0 +1,4 @@
+SELECT
+  "timestamp" AS "time",
+  wasserstand
+FROM flusssensoren
