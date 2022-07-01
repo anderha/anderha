@@ -1,4 +1,4 @@
-<samp>
+<samp style="font-family: Cambria;">
 
 # About me
 
@@ -22,9 +22,3 @@
 - Dialogflow - <a href="https://innfactory.de/softwareentwicklung/ui-ux/facebook-bots-mit-dialogflow/" target="_blank">Facebook-Bots mit Dialogflow</a>
 
 </samp>
-
-<style>
-samp {
-font-family: "Cambria";
-}
-</style>
